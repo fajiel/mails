@@ -1,0 +1,19 @@
+from:
+  addr:
+    name@email.com
+  name:
+    any name
+  pwd:
+    email pwd
+
+to:
+  addr:
+    user mail
+  name:
+    User name
+
+subject:
+  This is a Subject!
+
+smtp:
+  smtp #such as smtp.163.com

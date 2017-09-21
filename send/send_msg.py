@@ -74,13 +74,15 @@ class SendMSG():
         self.session.commit()
 
     def send_msg(self):
-        server = smtplib.SMTP(self.smtp, 25)
-        server.set_debuglevel(1)
-        server.login(self.from_addr, self.from_pwd)
         for mail_to, uid in self.to_list:
+            server = smtplib.SMTP(self.smtp, 25)#如果是SSL方式需要调用SMTP_SSL并传入SSL端口号
+            server.set_debuglevel(1)
+            server.login(self.from_addr, self.from_pwd)
             issucc = self.send_mail(server, mail_to, uid)
             self.update_db(issucc, mail=mail_to)
-
-        server.quit()
+            try:
+                server.quit()
+            except:
+                pass
         self.session.close()
 
